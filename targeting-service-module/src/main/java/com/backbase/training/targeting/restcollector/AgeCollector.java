@@ -1,4 +1,4 @@
-package com.backbase.tutorials.targeting.restcollector;
+package com.backbase.training.targeting.restcollector;
 
 import com.backbase.portal.targeting.connectorframework.content.contexts.definition.ResultEntries;
 import com.backbase.portal.targeting.connectorframework.content.contexts.definition.SegmentDefinition;
@@ -10,17 +10,24 @@ import net.sf.json.JSONSerializer;
 import org.joda.time.LocalDate;
 import org.joda.time.Period;
 import org.joda.time.PeriodType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 public class AgeCollector extends StaticContextCollector {
+
+    private static final Logger logger = LoggerFactory.getLogger(AgeCollector.class);
+
 
     private static final String AGE = "Age";
     private static final String BIRTHDAY = "birthDay";
@@ -38,6 +45,13 @@ public class AgeCollector extends StaticContextCollector {
             50,
             60
     };
+
+    @Value("${training.server.host}")
+    private String trainingServerHost;
+
+    @Value("${training.server.http.port}")
+    private String trainingServerPort;
+
 
     public AgeCollector() {
         super("ageCollector",
@@ -60,8 +74,8 @@ public class AgeCollector extends StaticContextCollector {
     @Override
     public List<SegmentDefinition> defineSegments(String portal, Map<String, String> properties) {
         List<SegmentDefinition> segmentDefinitions = new ArrayList<SegmentDefinition>();
-        for (int i = 0; i < SEGMENTS.length; i++) {
-            segmentDefinitions.add(new SegmentDefinition(SEGMENTS[i], "Age Segment: " + SEGMENTS[i]));
+        for (String SEGMENT : SEGMENTS) {
+            segmentDefinitions.add(new SegmentDefinition(SEGMENT, "Age Segment: " + SEGMENT));
         }
         return segmentDefinitions;
     }
@@ -70,7 +84,7 @@ public class AgeCollector extends StaticContextCollector {
     public ResultEntries executeTask(Map<String, String> requestMap, ResultEntries resultEntries) {
 
         //StaticContextCollector stores user profiles locally for future retrieval
-        if (resultEntries.isEmpty()) {
+        if(resultEntries.isEmpty()) {
 
             //get the username of the currently logged-in user
             String userName = requestMap.get("session.authentication.username");
@@ -78,56 +92,53 @@ public class AgeCollector extends StaticContextCollector {
             //configure the REST client
             Client client = ClientBuilder.newClient();
 
-            //TODO externalize the URL
-            WebTarget target = client.target("http://localhost:9999/training-server/rest/player/").path(userName);
-
+            WebTarget target = client.target(MessageFormat.format("http://{0}:{1}/training-server/rest/player/", trainingServerHost, trainingServerPort)).path(userName);
+            logger.debug("Calling Training Server: " + target.getUri());
             try {
                 int age = 0;
-                String jsonDataforPlayer = target.request(MediaType.APPLICATION_JSON).get(String.class);
-
-                JSONObject resultAsJson = new JSONObject();
+                String jsonDataForPlayer = target.request(MediaType.APPLICATION_JSON).get(String.class);
 
                 //Simple JSON parsing using JSONSerializer
-                resultAsJson = (JSONObject) JSONSerializer.toJSON(jsonDataforPlayer);
-                if (resultAsJson.containsKey(BIRTHDAY)) {
-
-                    long storedDateofBirth = (Long) resultAsJson.get("birthDay");
-                    age = this.calculateAge(new Date(storedDateofBirth));
+                JSONObject resultAsJson = (JSONObject) JSONSerializer.toJSON(jsonDataForPlayer);
+                if(resultAsJson.containsKey(BIRTHDAY)) {
+                    long storedDateOfBirth = (Long) resultAsJson.get("birthDay");
+                    age = calculateAge(new Date(storedDateOfBirth));
 
                 }
-
 
                 resultEntries.addSelectorEntry(AGE, Integer.toString(age));
 
                 //set a segment
-                resultEntries.addSegmentEntry(getSegmentId(age));
-
+                String segmentId = getSegmentId(age);
+                resultEntries.addSegmentEntry(segmentId);
+                logger.debug(MessageFormat.format("Targeting calculation result: [username={0}, age={1}, segment={2}]",
+                                userName, age, segmentId)
+                );
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error("Error communicating with Training Server: ", e);
             }
 
         }
-
 
         return resultEntries;
     }
 
     /**
      * Simple Age calculation method with the help of JodaTime
+     *
      * @param dob date of birth of the person
      * @return int Age of the person
      */
-    private int calculateAge(Date dob) {
-        LocalDate dateofbirth = new LocalDate(dob);
+    private static int calculateAge(Date dob) {
+        LocalDate dateOfBirth = new LocalDate(dob);
         LocalDate today = new LocalDate();
-        Period period = new Period(dateofbirth, today, PeriodType.yearMonthDay());
-        int age = period.getYears();
-        return age;
+        Period period = new Period(dateOfBirth, today, PeriodType.yearMonthDay());
+        return period.getYears();
     }
 
     private static String getSegmentId(int age) {
         for (int i = 0; i < SEGMENTS.length - 1; i++) {
-            if (age < AGE_LIMITS[i]) {
+            if(age < AGE_LIMITS[i]) {
                 return SEGMENTS[i];
             }
         }

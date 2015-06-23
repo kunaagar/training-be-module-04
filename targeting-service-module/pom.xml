@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-            xsi:schemaLocation="
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="
         http://maven.apache.org/POM/4.0.0 
         http://maven.apache.org/xsd/maven-4.0.0.xsd">
-        
+
     <modelVersion>4.0.0</modelVersion>
 
-  <!-- Ensure that this module is a child of services project-->
-  <parent>
-     <groupId>com.backbase.expert.training</groupId>
-       <artifactId>services</artifactId>
-       <version>1.0-SNAPSHOT</version>
-   </parent>
+    <!-- Ensure that this module is a child of services project-->
+    <parent>
+        <groupId>com.backbase.expert.training</groupId>
+        <artifactId>services</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
     <artifactId>targeting-service-module</artifactId>
 
     <name>Services :: Targeting</name>
-    <description>Sample Apache Camel services.</description>
+    <description>Sample Targeting Collector Module.</description>
 
     <dependencies>
 
         <dependency>
             <groupId>com.backbase.portal.foundation</groupId>
             <artifactId>presentation</artifactId>
-            <version>5.5.1.1</version>
+            <version>${portal.bom.version}</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>com.backbase.portal.targeting</groupId>
             <artifactId>connectorframework-local</artifactId>
@@ -55,24 +56,20 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
         </dependency>
-      <dependency>
-        <groupId>joda-time</groupId>
-        <artifactId>joda-time</artifactId>
-        <version>2.8</version>
-      </dependency>
 
-      <dependency>
-        <groupId>net.sf.json-lib</groupId>
-        <artifactId>json-lib</artifactId>
-        <version>2.4</version>
-        <classifier>jdk15</classifier>
-      </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.8</version>
+        </dependency>
 
+        <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.4</version>
+            <classifier>jdk15</classifier>
+        </dependency>
 
     </dependencies>
 
-
-    <build>
-        <finalName>${project.artifactId}</finalName>
-    </build>
 </project>
