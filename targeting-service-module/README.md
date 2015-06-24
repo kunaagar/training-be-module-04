@@ -15,8 +15,6 @@ Follow the instructions that can be found here: [Enterprise Integration Module](
 
 ### Installation & Configuration
 
-This would be done in the following steps 
-
 - Copy **targeting-service-module** into the **services** folder of your Launchpad 0.12.x project.
 
 - Include the **targeting-service-module** module to the build. Open `services/pom.xml` and add **targeting-service-module** in the `<modules>` section:
