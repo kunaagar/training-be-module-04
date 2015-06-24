@@ -28,7 +28,7 @@ This would be done in the following steps
 
 	```xml
 	    <dependency>
-	        <groupId>com.backbase.expert.training</groupId>
+	        <groupId>com.backbase.training</groupId>
 	        <artifactId>targeting-service-module</artifactId>
 	        <version>1.0-SNAPSHOT</version>
 	    </dependency>
