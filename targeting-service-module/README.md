@@ -2,7 +2,7 @@
 
 ## Portal Backend - Module 4: Custom Targeting Collector
 
-This exercise is part of [Module 4: Targeting](https://github.com/Backbase/training-be-module-04/tree/code-migration)
+This exercise is part of [Module 4: Targeting](../../..)
 
 In this module we will create a custom targeting collector and see the power of CXP's targeting capability.
 
@@ -11,7 +11,7 @@ This is a custom targeting module which can be plugged into your portal setup. O
 ### Prerequisites
 
 You need to have the player management service before performing this excerise.
-Follow the instructions from [Enterprise Integration Module](https://github.com/Backbase/training-be-module-01/tree/code-migration/enterprise-integration-module).
+Follow the instructions from [Enterprise Integration Module](https://github.com/Backbase/training-be-module-01/tree/master/enterprise-integration-module).
 
 ### Installation & Configuration
 
