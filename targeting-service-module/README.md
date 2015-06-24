@@ -10,8 +10,8 @@ This is a custom targeting module which can be plugged into your portal setup. O
 
 ### Prerequisites
 
-You need to have the player management service before performing this excerise.
-Follow the instructions from [Enterprise Integration Module](https://github.com/Backbase/training-be-module-01/tree/master/enterprise-integration-module).
+You need to get a training server up and running before performing this excerise.
+Follow the instructions from [Training Server](https://github.com/Backbase/training-server).
 
 ### Installation & Configuration
 
