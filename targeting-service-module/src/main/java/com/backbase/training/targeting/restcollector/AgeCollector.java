@@ -123,12 +123,6 @@ public class AgeCollector extends StaticContextCollector {
         return resultEntries;
     }
 
-    /**
-     * Simple Age calculation method with the help of JodaTime
-     *
-     * @param dob date of birth of the person
-     * @return int Age of the person
-     */
     private static int calculateAge(Date dob) {
         LocalDate dateOfBirth = new LocalDate(dob);
         LocalDate today = new LocalDate();
