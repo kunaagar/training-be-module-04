@@ -4,7 +4,7 @@
 
 In this module we will create a custom targeting collector and see the power of CXP's targeting feature.
 
-This is a custom targeting module which can be plugged in to your portal setup. Once integrated, this targeting collector will fetch the date of birth of the logged in user via the training server. It calculates the age and you can target your content based on the age/segment.
+This is a custom targeting module which can be plugged into your portal setup. Once integrated, this targeting collector will fetch the date of birth of the logged-in user from the Training Server. It calculates the age and you can target your content based on that criteria.
 
 ### Contents
 
