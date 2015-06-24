@@ -6,20 +6,20 @@ This exercise is part of [Module 4: Targeting](https://github.com/Backbase/train
 
 In this module we will create a custom targeting collector and see the power of CXP's targeting capability.
 
-This is a custom targeting module which can be plugged in to your portal setup. Once integrated, this targeting collector will fetch the date of birth of the logged in user via the Training Server. It calculates the age and you can target your content based on the age/segment.
+This is a custom targeting module which can be plugged into your portal setup. Once integrated, this targeting collector will fetch the date of birth of the logged-in user from the Training Server. It calculates the age and you can target your content based on that criteria.
 
 ### Prerequisites
 
-You need to have a player management service before performing this excerise.
-Follow the instructions that can be found here [Enterprise Integration Module](https://github.com/Backbase/training-be-module-01/tree/code-migration/enterprise-integration-module)
+You need to have the player management service before performing this excerise.
+Follow the instructions that can be found here: [Enterprise Integration Module](https://github.com/Backbase/training-be-module-01/tree/code-migration/enterprise-integration-module).
 
 ### Installation & Configuration
 
 This would be done in the following steps 
 
-- **Copy targeting-service-module from training-modules into the services folder of your Launchpad 0.12.x project.**
+- Copy **targeting-service-module** into the **services** folder of your Launchpad 0.12.x project.
 
-- **Include targeting-service-module module to the build.** Open `pom.xml` from *exercises-environment/services/*. Add `<module>targeting-service-module</module>` into  `<modules>` section
+- Include the **targeting-service-module** module to the build. Open `services/pom.xml` and add **targeting-service-module** in the `<modules>` section:
 	```xml
 	    <modules>
 	        ...	    
@@ -29,7 +29,7 @@ This would be done in the following steps
 	```	
 	Re-compile **services** by executing `mvn clean install` in the **services** folder.
 	
-- **Enable newly created module in Portal application.** Add the following dependency to your `portal/pom.xml` file in `<dependencies>` section:
+- Enable the newly created module in the Portal application. In the `<dependencies>` section of `portal/pom.xml`, add the following dependency:
 
 	```xml
 	    <dependency>
@@ -38,14 +38,9 @@ This would be done in the following steps
 	        <version>1.0-SNAPSHOT</version>
 	    </dependency>
 	```
- 
-- **Configure Portal properties.** Add following elements to the configuration into *backbase.properties* file.
-    ```
-    training.server.host=localhost
-    training.server.http.port=9999
-    ```
+
 ### Build & Run
 
-- Start Portal application with executing `mvn jetty:run` command from **portal** directory.
+- Start Portal application by executing `mvn jetty:run` command from the **portal** directory.
 - Create a page and drop a targeting container.
 - You should now be able to see the Age collector as an option in the targeting container.
