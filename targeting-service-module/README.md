@@ -1,12 +1,17 @@
 # Backbase Training Exercises
 
-## Targeting Service Module
+## Portal Backend - Module 4: Custom Targeting Collector
+
+This exercise is part of [Module 4: Targeting](https://github.com/Backbase/training-be-module-04/tree/code-migration)
 
 In this module we will create a custom targeting collector and see the power of CXP's targeting capability.
 
-This is a custom targeting module which can be plugged in to your portal setup.
-Once integrated, this targeting collector will fetch the date of birth of the logged in user via the Training Server.
-It calculates the age and you can target your content based on the age/segment.
+This is a custom targeting module which can be plugged in to your portal setup. Once integrated, this targeting collector will fetch the date of birth of the logged in user via the Training Server. It calculates the age and you can target your content based on the age/segment.
+
+### Prerequisites
+
+You need to have a player management service before performing this excerise.
+Follow the instructions that can be found here [Enterprise Integration Module](https://github.com/Backbase/training-be-module-01/tree/code-migration/enterprise-integration-module)
 
 ### Installation & Configuration
 
@@ -22,7 +27,7 @@ This would be done in the following steps
 	        ...
 	    </modules>
 	```	
-	Re-compile *exercises-environment/services/* executing `mvn clean install` command.
+	Re-compile **services** by executing `mvn clean install` in the **services** folder.
 	
 - **Enable newly created module in Portal application.** Add the following dependency to your `portal/pom.xml` file in `<dependencies>` section:
 
@@ -41,7 +46,6 @@ This would be done in the following steps
     ```
 ### Build & Run
 
-- Build Portal module with executing `mvn clean install` command from *portal* directory.
-- Start Portal application with executing `mvn jetty:run` command from *portal* directory.
+- Start Portal application with executing `mvn jetty:run` command from **portal** directory.
 - Create a page and drop a targeting container.
 - You should now be able to see the Age collector as an option in the targeting container.
