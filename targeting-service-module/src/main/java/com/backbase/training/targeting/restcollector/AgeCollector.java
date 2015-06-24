@@ -28,7 +28,6 @@ public class AgeCollector extends StaticContextCollector {
 
     private static final Logger logger = LoggerFactory.getLogger(AgeCollector.class);
 
-
     private static final String AGE = "Age";
     private static final String BIRTHDAY = "birthDay";
 
