@@ -11,7 +11,7 @@ This is a custom targeting module which can be plugged into your portal setup. O
 ### Prerequisites
 
 You need to have the player management service before performing this excerise.
-Follow the instructions that can be found here: [Enterprise Integration Module](https://github.com/Backbase/training-be-module-01/tree/code-migration/enterprise-integration-module).
+Follow the instructions from [Enterprise Integration Module](https://github.com/Backbase/training-be-module-01/tree/code-migration/enterprise-integration-module).
 
 ### Installation & Configuration
 
