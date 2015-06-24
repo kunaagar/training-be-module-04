@@ -51,7 +51,6 @@ public class AgeCollector extends StaticContextCollector {
     @Value("${training.server.http.port}")
     private String trainingServerPort;
 
-
     public AgeCollector() {
         super("ageCollector",
                 "Collects information about the logged-in customer's age",
