@@ -39,6 +39,6 @@ Follow the instructions from [Training Server](https://github.com/Backbase/train
 
 ### Build & Run
 
-- Start Portal application by executing `mvn jetty:run` command from the **portal** directory.
+- If Portal application is already running, stop it by pressing *Ctrl+C*. Start Portal application by executing `mvn jetty:run` command from the **portal** directory.
 - Create a page and drop a targeting container.
 - You should now be able to see the Age collector as an option in the targeting container.
