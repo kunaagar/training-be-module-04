@@ -46,7 +46,7 @@ Follow the instructions from [Training Server](https://github.com/Backbase/train
   training.server.http.port=9999
   ```
 
-  If you made modifications to the properties file, re-compile the configuration by executing `mvn clean package` in the **configuration** folder.
+  If you have made modifications to the properties file, re-compile the configuration by executing `mvn clean package` in the **configuration** folder.
 
 ### Build & Run
 
