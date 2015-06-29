@@ -36,6 +36,17 @@ Follow the instructions from [Training Server](https://github.com/Backbase/train
 	        <version>1.0-SNAPSHOT</version>
 	    </dependency>
 	```
+- If you previously installed and configured [Enterprise Integration Module](https://github.com/Backbase/training-be-module-01/tree/master/enterprise-integration-module#installation--configuration), then you already have `training.server.host` and `training.server.http.port` properties in place. 
+
+  Otherwise, open `configuration/src/main/resources/backbase.properties` and add the following lines:
+
+  ```
+  #Training Server Host
+  training.server.host=localhost
+  training.server.http.port=9999
+  ```
+
+  If you made modifications to the properties file, re-compile the configuration by executing `mvn clean package` in the **configuration** folder.
 
 ### Build & Run
 
