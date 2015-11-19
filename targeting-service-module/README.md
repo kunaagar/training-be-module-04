@@ -27,7 +27,7 @@ Follow the instructions from [Training Server](https://github.com/Backbase/train
 	```	
 	Re-compile **services** by executing `mvn clean install` in the **services** folder.
 	
-- Enable the newly created module in the Portal application. In the `<dependencies>` section of `portal/pom.xml`, add the following dependency:
+- Enable the newly created module in the Portalserver application. In the `<dependencies>` section of `webapps/portalserver/pom.xml`, add the following dependency:
 
 	```xml
 	    <dependency>
@@ -50,6 +50,6 @@ Follow the instructions from [Training Server](https://github.com/Backbase/train
 
 ### Build & Run
 
-- If Portal application is already running, stop it by pressing *Ctrl+C*. Start Portal application by executing `mvn jetty:run` command from the **portal** directory.
+- If Portalserver application is already running, stop it by pressing *Ctrl+C*. Start Portalserver application by executing `mvn jetty:run` command from the **webapps/portalserver** directory.
 - Create a page and drop a targeting container.
 - You should now be able to see the Age collector as an option in the targeting container.
